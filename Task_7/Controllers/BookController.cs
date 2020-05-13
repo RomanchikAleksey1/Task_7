@@ -54,5 +54,6 @@ namespace Task_7.Controllers
                 ? _bookRepository.FindByPublishingHouse(publishingHouse).ToList()
                 : _bookRepository.FindAll().ToList();
         }
+
     }
 }

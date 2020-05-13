@@ -6,7 +6,9 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/bookslist.css"/>
+    <link rel="stylesheet" href="~/css/bookslist.css" />
+    <link rel="stylesheet" href="~/css/loadfilestyle.css"/>
+
 </head>
 <body>
     <header>
@@ -23,6 +25,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Book" asp-action="Index">Dashboard(Books)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Author" asp-action="Index">Dashboard(Authors)</a>
                         </li>
                     </ul>
                 </div>

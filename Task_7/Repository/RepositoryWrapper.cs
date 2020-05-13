@@ -10,6 +10,7 @@ namespace Task_7.Repository
         private IBookRepository _bookRepository;
         private IAuthorRepository _authorRepository;
         private IPublishingHouseRepository _publishingHouseRepository;
+        private IBookAuthorRepository _bookAuthorRepository;
 
         public IBookRepository BookRepository
         {
@@ -29,9 +30,20 @@ namespace Task_7.Repository
             set => throw new NotImplementedException();
         }
 
+        public IBookAuthorRepository BookAuthorRepository
+        {
+            get => _bookAuthorRepository ??= new BookAuthorRepository(_appDbContext);
+            set => throw new NotImplementedException();
+        }
+
         public RepositoryWrapper(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
+        }
+
+        public void Save()
+        {
+            _appDbContext.SaveChanges();
         }
     }
 }

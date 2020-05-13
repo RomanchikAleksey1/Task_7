@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Task_7.Models
 {
@@ -7,12 +8,19 @@ namespace Task_7.Models
     {
         public Guid Id { get; set; }
 
+        [Required]
+        [Display(Name = "Title")]
+        [StringLength(1024, MinimumLength = 3)]
         public string Name { get; set; }
 
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Publication date")]
         public DateTime? PublicationDate { get; set; }
 
+        [Range(1, 5)]
         public double? Rating { get; set; }
 
         public string ImageLink { get; set; }

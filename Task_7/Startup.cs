@@ -20,13 +20,17 @@ namespace Task_7
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(
+                options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
 
             services.ConfigureRepositoryWrapper();
+            services.ConfigureFileService();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,6 +55,10 @@ namespace Task_7
             app.UseEndpoints(
                 endpoints =>
                 {
+                    endpoints.MapControllerRoute(
+                        name: "Admin",
+                        pattern: "{area:exists}/{controller=Book}/{action=Index}/{id?}");
+
                     endpoints.MapControllerRoute(
                         "default",
                         "{controller=Book}/{action=Index}/{id?}"

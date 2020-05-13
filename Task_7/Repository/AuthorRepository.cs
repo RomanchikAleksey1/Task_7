@@ -14,6 +14,14 @@ namespace Task_7.Repository
         {
         }
 
+        public override IQueryable<Author> FindAll()
+        {
+            return AppDbContext.Set<Author>()
+                .Include(x => x.BookAuthors)
+                .ThenInclude(t => t.Book)
+                .AsNoTracking();
+        }
+
         public override IQueryable<Author> FindByCondition(Expression<Func<Author, bool>> expression)
         {
             return AppDbContext.Set<Author>().Where(expression)
